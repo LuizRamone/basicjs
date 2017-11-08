@@ -8,7 +8,6 @@
     messagingSenderId: "820073683843"
   };
   firebase.initializeApp(config);
-
   database = firebase.database();
 
 
@@ -58,7 +57,7 @@ var todoList = {
   todoList.addTodo(addTodoTextInput.value);
   addTodoTextInput.value = '';
     var ref = database.ref('Todos');
-	ref.push(todos);
+	ref.push(addTodoTextInput.value);
   view.displayTodos();
   },
   changeTodo:function() {
