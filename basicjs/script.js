@@ -1,4 +1,5 @@
- var config = {
+   var database;
+   var config = {
     apiKey: "AIzaSyC3IMT3r6Ik8uLg5vSlzKqPYNq-HhwGris",
     authDomain: "autenticacaofirebase-e2499.firebaseapp.com",
     databaseURL: "https://autenticacaofirebase-e2499.firebaseio.com",
@@ -7,16 +8,16 @@
     messagingSenderId: "820073683843"
   };
   firebase.initializeApp(config);
-  var database = firebase.database();
-  var ref = database.ref('Todos');
+
+  database = firebase.database();
+
 
 
 
 var todoList = {
   todos: [],
   addTodo:function(todoText) {
-  //this.todos
-  ref.push({
+  this.todos.push({
   todoText:todoText,
   completed:false
   });
@@ -56,6 +57,8 @@ var todoList = {
   var addTodoTextInput = document.getElementById('addTodoTextInput');
   todoList.addTodo(addTodoTextInput.value);
   addTodoTextInput.value = '';
+    var ref = database.ref('Todos');
+	ref.push(todos);
   view.displayTodos();
   },
   changeTodo:function() {
